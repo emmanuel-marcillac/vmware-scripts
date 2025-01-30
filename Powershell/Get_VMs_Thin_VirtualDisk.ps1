@@ -35,3 +35,7 @@ get-view -ViewType VirtualMachine -Property Name, "Config.Hardware.Device" | %{
 }
 #Print out our table
 $vmdiskformat | format-table -autosize
+
+# Disconnecting from the vCenter Server
+Disconnect-VIServer -Confirm:$false
+Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
