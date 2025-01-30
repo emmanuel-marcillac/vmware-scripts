@@ -96,10 +96,6 @@ $ZertoPrivileges = @(
 	'Resource.AssignVMToPool',
 	'VirtualMachine.Config.Unlock')
 
-# Load the PowerCLI SnapIn and set the configuration
-#Add-PSSnapin VMware.VimAutomation.Core -ea "SilentlyContinue"
-#Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false | Out-Null
-
 # Get the vCenter Server Name to connect to
 $vCenterServer = Read-Host "Enter vCenter Server host name (DNS with FQDN or IP address)"
 
