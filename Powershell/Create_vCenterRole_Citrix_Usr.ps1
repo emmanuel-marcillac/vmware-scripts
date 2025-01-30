@@ -10,8 +10,6 @@
     Author        Falko Banaszak, https://virtualhome.blog, Twitter: @Falko_Banaszak
 #>
 
-.GITHUB
-# add note
 # Here are all necessary and cumualative vCenter Privileges needed for all operations of Zerto
 $CitrixUsrPrivileges = @(
 	'Global.CancelTask',
