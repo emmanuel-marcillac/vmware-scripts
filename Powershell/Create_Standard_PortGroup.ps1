@@ -35,7 +35,7 @@ $VLANid = Read-Host "Enter VLAN id"
 Write-Host "Processing Strandard Portgroup named $PortGroupName (vlan id $VLANid) creation, inside vswitch named $vSwitchName on ESXis members of cluster named $ClusterName" -ForegroundColor Green
 
 #Call New-virtualPortGroup on each ESXi Cluster Members
-Get-Cluster -Name $ClusterName | Get-VMHost | foreach { New-VirtualPortGroup -VirtualSwitch ( Get-VirtualSwitch -Name $vSwitchName -VMHost $_ ) -Name $PortGroupName -VLanId $VLANid }
+Get-Cluster -Name $ClusterName | Get-VMHost | ForEach-Object { New-VirtualPortGroup -VirtualSwitch ( Get-VirtualSwitch -Name $vSwitchName -VMHost $_ ) -Name $PortGroupName -VLanId $VLANid }
 
 # Disconnecting from the vCenter Server
 Disconnect-VIServer -Confirm:$false
