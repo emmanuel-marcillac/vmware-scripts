@@ -1,0 +1,1 @@
+Get-View -Viewtype VirtualMachine -Property Name, Config.Hardware.Device | ?{$_.Config.Hardware.Device | ?{($_ -is [VMware.Vim.VirtualEthernetCard]) -and ($_.MacAddress -eq "00:50:56:a9:0e:87")}}
