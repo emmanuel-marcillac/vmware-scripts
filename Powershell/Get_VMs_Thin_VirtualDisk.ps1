@@ -18,7 +18,8 @@ $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentLis
 
 # Connect to the vCenter Server with collected credentials
 Connect-VIServer -Server $vCenterServer -Credential $Credentials -ErrorAction Ignore | Out-Null 
-IF($? -Eq $True)
+
+If($? -Eq $True)
 {
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
