@@ -129,8 +129,11 @@ $vCenterUserPassword = Read-Host "Enter your password (no worries it is a secure
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $vCenterUser,$vCenterUserPassword
 
 # Connect to the vCenter Server with collected credentials
-Connect-VIServer -Server $vCenterServer -Credential $Credentials | Out-Null
-Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
+Connect-VIServer -Server $vCenterServer -Credential $Credentials -ErrorAction Ignore | Out-Null 
+
+If($? -Eq $True)
+{
+	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
 # Provide a name for your new role
 $NewRole = Read-Host "Enter your desired name for the new vCenter role"
@@ -144,3 +147,7 @@ Get-VIRole -Name $NewRole | Select-Object Description, PrivilegeList, Server, Na
 # Disconnecting from the vCenter Server
 Disconnect-VIServer -Confirm:$false
 Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
+}
+else {
+	Write-Host "Cannot complete login on $vCenterServer due to an incorrect user name or password" -ForegroundColor Red
+}
