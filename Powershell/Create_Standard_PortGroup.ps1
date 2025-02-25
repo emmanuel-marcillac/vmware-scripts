@@ -17,8 +17,11 @@ $vCenterUserPassword = Read-Host "Enter your password (no worries it is a secure
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $vCenterUser,$vCenterUserPassword
 
 # Connect to the vCenter Server with collected credentials
-Connect-VIServer -Server $vCenterServer -Credential $Credentials | Out-Null
-Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
+Connect-VIServer -Server $vCenterServer -Credential $Credentials -ErrorAction Ignore | Out-Null 
+
+If($? -Eq $True)
+{
+	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
 # Provide Cluster Name
 $ClusterName = Read-Host "Enter VMware Cluster Name where PortGroup will be create on each ESXi member of this cluster"
@@ -40,3 +43,7 @@ Get-Cluster -Name $ClusterName | Get-VMHost | ForEach-Object { New-VirtualPortGr
 # Disconnecting from the vCenter Server
 Disconnect-VIServer -Confirm:$false
 Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
+}
+else {
+	Write-Host "Cannot complete login on $vCenterServer due to an incorrect user name or password" -ForegroundColor Red
+}
