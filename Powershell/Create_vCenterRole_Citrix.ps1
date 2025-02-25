@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-    Create_vCenterRole_Packer.ps1 - PowerShell Script to create a new vCenter Role with all the required permission for Packer
+    Create_vCenterRole_Packer.ps1 - PowerShell Script to create a new vCenter Role with all the required permission for Citrix
 .DESCRIPTION
     This script is used to create a new role on your vCenter server.
-    The newly created role will be filled with the needed permissions for using it with Packer
+    The newly created role will be filled with the needed permissions for using it with Citrix
 .OUTPUTS
     Results are printed to the console.
 .NOTES
     Author        Falko Banaszak, https://virtualhome.blog, Twitter: @Falko_Banaszak
 #>
 
-# Here are all necessary and cumualative vCenter Privileges needed for all operations of Zerto
+# Here are all necessary and cumualative vCenter Privileges needed for all operations of Citrix
 $CitrixPrivileges = @(
 	'Global.ManageCustomFields',
 	'Global.SetCustomField',

@@ -3,7 +3,7 @@
     Create_vCenterRole_Zerto.ps1 - PowerShell Script to create a new vCenter Role with all the required permission for Zerto
 .DESCRIPTION
     This script is used to create a new role on your vCenter server.
-    The newly created role will be filled with the needed permissions for using it with Veeam Backup & Replication
+    The newly created role will be filled with the needed permissions for using it with Zerto
 .OUTPUTS
     Results are printed to the console.
 .NOTES

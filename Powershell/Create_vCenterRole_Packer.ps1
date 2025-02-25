@@ -10,7 +10,7 @@
     Author        Falko Banaszak, https://virtualhome.blog, Twitter: @Falko_Banaszak
 #>
 
-# Here are all necessary and cumualative vCenter Privileges needed for all operations of Zerto
+# Here are all necessary and cumualative vCenter Privileges needed for all operations of Paker
 $ZertoPrivileges = @(
 	'Datastore.Browse',
 	'Datastore.FileManagement',
