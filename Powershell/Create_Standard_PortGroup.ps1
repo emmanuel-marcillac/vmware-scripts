@@ -23,26 +23,26 @@ If($? -Eq $True)
 {
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
-# Provide Cluster Name
-$ClusterName = Read-Host "Enter VMware Cluster Name where PortGroup will be create on each ESXi member of this cluster"
+	# Provide Cluster Name
+	$ClusterName = Read-Host "Enter VMware Cluster Name where PortGroup will be create on each ESXi member of this cluster"
 
-# Provide Cluster Name
-$vSwitchName = Read-Host "Enter Standard vSwitch Name"
+	# Provide Cluster Name
+	$vSwitchName = Read-Host "Enter Standard vSwitch Name"
 
-# Provide Cluster Name
-$PortGroupName = Read-Host "Enter PortGroup Name"
+	# Provide Cluster Name
+	$PortGroupName = Read-Host "Enter PortGroup Name"
 
-# Provide VLAN id
-$VLANid = Read-Host "Enter VLAN id"
+	# Provide VLAN id
+	$VLANid = Read-Host "Enter VLAN id"
 
-Write-Host "Processing Strandard Portgroup named $PortGroupName (vlan id $VLANid) creation, inside vswitch named $vSwitchName on ESXis members of cluster named $ClusterName" -ForegroundColor Green
+	Write-Host "Processing Strandard Portgroup named $PortGroupName (vlan id $VLANid) creation, inside vswitch named $vSwitchName on ESXis members of cluster named $ClusterName" -ForegroundColor Green
 
-#Call New-virtualPortGroup on each ESXi Cluster Members
-Get-Cluster -Name $ClusterName | Get-VMHost | ForEach-Object { New-VirtualPortGroup -VirtualSwitch ( Get-VirtualSwitch -Name $vSwitchName -VMHost $_ ) -Name $PortGroupName -VLanId $VLANid }
+	#Call New-virtualPortGroup on each ESXi Cluster Members
+	Get-Cluster -Name $ClusterName | Get-VMHost | ForEach-Object { New-VirtualPortGroup -VirtualSwitch ( Get-VirtualSwitch -Name $vSwitchName -VMHost $_ ) -Name $PortGroupName -VLanId $VLANid }
 
-# Disconnecting from the vCenter Server
-Disconnect-VIServer -Confirm:$false
-Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
+	# Disconnecting from the vCenter Server
+	Disconnect-VIServer -Confirm:$false
+	Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
 }
 else {
 	Write-Host "Cannot complete login on $vCenterServer due to an incorrect user name or password" -ForegroundColor Red

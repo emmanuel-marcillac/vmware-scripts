@@ -74,18 +74,18 @@ If($? -Eq $True)
 {
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
-# Provide a name for your new role
-$NewRole = Read-Host "Enter your desired name for the new vCenter role"
-Write-Host "Thanks, your new vCenter role will be named $NewRole" -ForegroundColor Green
+	# Provide a name for your new role
+	$NewRole = Read-Host "Enter your desired name for the new vCenter role"
+	Write-Host "Thanks, your new vCenter role will be named $NewRole" -ForegroundColor Green
 
-# Creating the new role with the needed permissions
-New-VIRole -Name $NewRole -Privilege (Get-VIPrivilege -Id $VeeamBackupPrivileges) | Out-Null
-Write-Host "Your new vCenter role has been created, here it is:" -ForegroundColor Green
-Get-VIRole -Name $NewRole | Select-Object Description, PrivilegeList, Server, Name | Format-List
+	# Creating the new role with the needed permissions
+	New-VIRole -Name $NewRole -Privilege (Get-VIPrivilege -Id $VeeamBackupPrivileges) | Out-Null
+	Write-Host "Your new vCenter role has been created, here it is:" -ForegroundColor Green
+	Get-VIRole -Name $NewRole | Select-Object Description, PrivilegeList, Server, Name | Format-List
 
-# Disconnecting from the vCenter Server
-Disconnect-VIServer -Confirm:$false
-Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
+	# Disconnecting from the vCenter Server
+	Disconnect-VIServer -Confirm:$false
+	Write-Host "Disconnected from your vCenter Server $vCenterServer - have a great day :)" -ForegroundColor Green
 }
 else {
 	Write-Host "Cannot complete login on $vCenterServer due to an incorrect user name or password" -ForegroundColor Red
