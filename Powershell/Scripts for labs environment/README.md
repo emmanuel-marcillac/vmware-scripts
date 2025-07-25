@@ -1,0 +1,1 @@
+This folder contains a collection of sample powercli scripts to run periodicaly on a VMware labs environment to keep it clean. For example a policy to power off, every weeks, all virtuals machines except those needed for virtual environment (vCenter, NSX appliances etc...) and to delete virtual machines that was powered off more than 2 months.
