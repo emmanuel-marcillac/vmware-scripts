@@ -1,8 +1,8 @@
-########################################################################
+###########################################################################
 ###
-### Remove vm snapshot older then x days but keep VEEAM backup snapshots
+### Remove VMs snapshots older then x days but keep VEEAM backup snapshots    
 ###
-########################################################################
+###########################################################################
 
 # Get the vCenter Server Name to connect to
 $vCenterServer = Read-Host "Enter vCenter Server host name (DNS with FQDN or IP address)"
@@ -24,10 +24,10 @@ If($? -Eq $True)
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
 # Define the cutoff date as 7 days ago from today
-    $cutoffDate = (Get-Date).AddDays(-0)
+    $cutoffDate = (Get-Date).AddDays(-7)
 
 # Retrieve all snapshots from all VMs
-    $snapshots = Get-VM -name EMA-PACKER | Get-Snapshot -ErrorAction SilentlyContinue
+    $snapshots = Get-VM | Get-Snapshot -ErrorAction SilentlyContinue
 
     foreach ($snapshot in $snapshots) {
         # Check if the snapshot is older than 7 days and its name does not contain "VEEAM"

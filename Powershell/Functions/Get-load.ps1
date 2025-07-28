@@ -24,7 +24,7 @@ function Get-Load {
   Get a graphical list for host load for ESX01 and 02
 .EXAMPLE
   PS> Get-VM "vmtest*" | Get-Load
-  Get a graphical load list for all VM with name started with vmtest
+  Get a graphical load list for all VM with name started with vmtestget
 #>
 
 	[CmdletBinding(DefaultParameterSetName='GetViewByVIObject')]
@@ -172,4 +172,3 @@ function Get-Load {
 		}
 	}
 }
-
