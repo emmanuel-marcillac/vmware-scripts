@@ -36,11 +36,11 @@ If($? -Eq $True)
 		    $row.MemoryGB = [math]::round($VMHost.MemoryTotalGB)
 		    $row.CpuUsage = [math]::round($VMHost.CpuUSageMhz / $VMHost.CpuTotalMhz * 100 )
 		    $row.MemoryUsage = [math]::round($VMHost.MemoryUsageGB / $VMHost.MemoryTotalGB * 100 )
-		    $row.VMPoweredOn = (get-vmhost -name $VMHost | get-vm | ? {$_.powerstate -match "PoweredOn"}).count
+		    $row.VMPoweredOn = (get-vmhost -name $VMHost | get-vm | Where-Object {$_.powerstate -match "PoweredOn"}).count
 		    $Report += $row
 	        }
 
-$Report | format-table -AutoSize
+$Report | format-table * -AutoSize
    
 
 # Disconnecting from the vCenter Server
