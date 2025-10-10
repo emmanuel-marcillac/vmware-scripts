@@ -10,7 +10,7 @@
     Author        Falko Banaszak, https://virtualhome.blog, Twitter: @Falko_Banaszak
 #>
 
-# Here are all necessary and cumualative vCenter Privileges needed for all operations of Zerto
+# Here are all necessary and cumulative vCenter Privileges needed for all operations of Zerto
 $ZertoPrivileges = @(
 	'Alarm.Create',
     'Alarm.Delete',
