@@ -1,11 +1,11 @@
 #***********************************************************************************************************************************************#
-#      Script Name	 :   ShutdownLabsVMs.ps1                                                                                                    #
-#      Purpose		 :   Shutdown All VMs Except vCenter and VMware appliances, Try shutdown Gracefully before Hard Shutdown them.              #
-#	   Pre requisite :   login and password are stored in a xml file to create it launch de following command                                   #
+#      Script Name	 :   ShutdownLabsVMs.ps1                                                                                                   #
+#      Purpose		 :   Shutdown All VMs Except vCenter and VMware appliances, Try shutdown Gracefully before Hard Shutdown them.                #
+#	   Pre requisite :   login and password are stored in a xml file to create it launch de following command                                    #
 #                    :   New-VICredentialStoreItem -Host "vcenter_fqdn" -User "user_name" -Password "secret_password" -File "path_to_xml_file"  #
 #                    :   Logging powershell module need to be installed                                                                         #
 #                    :                                                                                                                          #
-#      Author		 :                                                                                                                          #
+#      Author		 :                                                                                                                            #
 #                                                                                                                                               #
 #***********************************************************************************************************************************************#
 #
