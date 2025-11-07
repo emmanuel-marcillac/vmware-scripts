@@ -1,9 +1,13 @@
-#############################################################
-###
-### Get VMhost HBA WWN information
-###
-##############################################################
-
+<#
+.SYNOPSIS
+    PowerShell Script to list all VMs and their Network Adapter information
+.DESCRIPTION
+    This script list all VMs and their Network Adapter information
+.OUTPUTS
+    Results are printed to the console.
+.NOTES
+    Author        Emmanuel Marcillac
+#>
 # Get the vCenter Server Name to connect to
 $vCenterServer = Read-Host "Enter vCenter Server host name (DNS with FQDN or IP address)"
 
@@ -23,18 +27,15 @@ If($? -Eq $True)
 {
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
-$hosti = Get-VMHost
-    $reportwwn = foreach ($esxi in $hosti) {
-        Get-VMHosthba -VMHost $esxi -type FibreChannel | Where-Object{$_.Status -eq 'online'} |
-        Select-Object  @{N="Host";E={$esxi.Name}},
-            Name,
-            # Retreive the WWN decimal information and format it as hexadecimal
-            @{N='HBA WWN Node';E={$wwn = "{0:X}" -f $_.NodeWorldWideName; (0..7 | ForEach-Object{$wwn.Substring($_*2,2)}) -join ':'}},
-            @{N='HBA WWN Port';E={$wwp = "{0:X}" -f $_.PortWorldWideName; (0..7 | ForEach-Object{$wwp.Substring($_*2,2)}) -join ':'}}
+$strout = "VMName, NicName, MacAddress, PortGoupName `n"
+
+$nics = Get-VM | Sort-Object Name | Get-NetworkAdapter
+
+foreach ($nic in $nics)
+    {
+    $strout = $strout + $nic.Parent + "," + $nic.Name + "," + $nic.MacAddress + "," + $nic.NetworkName + "`n"
     }
-    
-$reportwwn | format-table -AutoSize
-   
+$strout
 
 # Disconnecting from the vCenter Server
 Disconnect-VIServer -Confirm:$false

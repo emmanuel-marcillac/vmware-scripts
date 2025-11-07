@@ -26,20 +26,20 @@ Connect-VIServer -Server $vCenterServer -Credential $Credentials -ErrorAction Ig
 
 If($? -Eq $True)
 {
-	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
+Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
 
 $info = @()
-foreach($dvPortgroup in (Get-VirtualPortgroup -Distributed | Sort Name)){
+foreach($dvPortgroup in (Get-VirtualPortgroup -Distributed | Sort-Object Name)){
     $dvPortgroupInfo = New-Object PSObject -Property @{            
         Name = $dvPortgroup.Name
         VlanId = $dvPortgroup.ExtensionData.Config.DefaultPortConfig.Vlan.VlanId
         NumPorts = $dvPortgroup.NumPorts
         NumVMs = $dvPortgroup.ExtensionData.vm.count
-		NumVMKernel = ((get-vdport -vdportgroup $dvPortgroup.Name) | ? {$_.ConnectedEntity -like "vmk*"}).count
+		NumVMKernel = ((get-vdport -vdportgroup $dvPortgroup.Name) | Where-Object {$_.ConnectedEntity -like "vmk*"}).count
     }  
     $info += $dvPortgroupInfo
 }
-$info | select Name,NumPorts,NumVMs,NumVMKernel | format-table
+$info | Select-Object Name,NumPorts,NumVMs,NumVMKernel | format-table
 
    
 

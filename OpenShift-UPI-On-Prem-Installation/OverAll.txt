@@ -1,0 +1,51 @@
+OpenShift Installation on-prem using UPI Online Method
+
+HW Specs:
+haproxy 1GB RAM, 20GB Disk, 1 CPU, 2 NIC
+master1 24GB RAM, 150GB Disk, 4 CPU, 1 NIC
+master2 24GB RAM, 150GB Disk, 4 CPU, 1 NIC
+master3 24GB RAM, 150GB Disk, 4 CPU, 1 NIC
+worker1 32GB RAM, 200GB Disk, 4 CPU, 1 NIC
+worker2 32GB RAM, 200GB Disk, 4 CPU, 1 NIC
+
+For VM's on ESXi configure option disk.EnableUUID
+
+VM - Edit Settings
+VM Options - Advanced
+Edit Configuration - Add parameter
+Key column type "disk.EnabledUUID"
+value column type "TRUE"
+
+redhat developer account login with 60 days trial :
+https://console.redhat.com/openshift
+
+Global taks
+  - OpenShift Admin
+  - sshkey Share
+  - Router
+  - Loadbalancer
+  - DHCP Server
+  - DNS Server
+
+1. Install Centos OS 10
+
+2. Disable Firewalld and selinux
+   #systemctl disable firewalld
+   #vim /etc/selinux/config  #change SELINUX=enforcing for SELINUX=disable
+   Reboot to take into consideration
+
+3. NAT for internet
+	#dnf install nftables
+	#systemctl enable nftables
+	#systemctl start nftables
+	
+	#iptable -t nat -A POSTROUTING -o ens224 -j MASQUERADE #on external interface
+	a revoir avec l'utitaire nft par example #nft list ruleset
+	
+	#vim /etc/sysctl.conf #add net.ipv4.ip_forward = 1
+	#sysctl -p
+
+4. install DNS and DHCP
+
+	
+	

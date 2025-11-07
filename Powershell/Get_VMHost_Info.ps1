@@ -25,7 +25,7 @@ If($? -Eq $True)
     $Report = @()
     $VMHostList =  Get-VMHost
 	    Foreach ($VMHost in $VMHostList){
-		    $row = "" | Select Name, Manufacturer, Model, Version, Build, NumSocket, NumCore, MemoryGB, CpuUsage, MemoryUsage, VMPoweredOn
+		    $row = "" | Select-Object Name, Manufacturer, Model, Version, Build, NumSocket, NumCore, MemoryGB, CpuUsage, MemoryUsage, VMPoweredOn
 		    $row.Name = $VMHost.name
 		    $row.Manufacturer = $VMHost.Manufacturer
 		    $row.Model = $VMHost.Model
