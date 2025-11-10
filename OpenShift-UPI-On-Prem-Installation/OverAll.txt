@@ -47,5 +47,22 @@ Global taks
 
 4. install DNS and DHCP
 
+  #dnf install bind bin-utils -y
+  retrieve named config file
+
+  #systemctl enable named
+  #systemctl start named
+  #systemctl status named
+
+  Change /etc/resolv.conf to use 127.0.0.1 for dns resolution
+
+  #systemctl restart NetworkManager
+
+  #hostnamectl set-hostname hapxory.cluster1.local
+
+  5. install & configure DHCP
+
+  #dnf install kea -y
+  
 	
 	
