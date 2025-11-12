@@ -63,6 +63,16 @@ Global taks
   5. install & configure DHCP
 
   #dnf install kea -y
+
+6. Install & configure haproxy
+
+  #dnf install haproxy -y
+
+  Copy file haproxy.cfg
+  #systemctl enable haproxy
+  #systemctl start haproxy
+  #systemctl status haproxy
+
   
 	
 	
