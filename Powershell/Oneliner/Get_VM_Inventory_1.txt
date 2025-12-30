@@ -1,0 +1,15 @@
+<#
+.SYNOPSIS
+Quick vCenter VMs inventory
+
+.DESCRIPTION
+Enumerates all VMs (PowerCLI) with the following information:
+    - VM Name
+    - Power statement
+    - Number vCPU
+    - Memory GB
+    - Provisioned Space GB
+    - Used Space GB
+    - Virtual Portgroup Name (separated by "|")
+#>
+Get-VM | Select Name,PowerState,NumCPU,MemoryGB,ProvisionedSpaceGB,UsedSpaceGB,@{N='PortgroupName';E={(Get-NetworkAdapter -VM $_).NetworkName -join '|'}}
