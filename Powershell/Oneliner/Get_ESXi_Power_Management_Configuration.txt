@@ -1,0 +1,10 @@
+<#
+.SYNOPSIS
+Retrieve ESXi Power Management Configuration
+
+.DESCRIPTION
+Enumerates all ESXi Host and retreive Power Management Configuration:
+    - Hardware support (depent on bios configuration)
+    - Current Policy
+#>
+Get-VMHost | Select Name, @{N='Power Technology';E={$_.ExtensionData.Hardware.CpuPowerManagementInfo.HardwareSupport}}, @{N='Current Policy';E={$_.ExtensionData.Hardware.CpuPowerManagementInfo.CurrentPolicy}} 
