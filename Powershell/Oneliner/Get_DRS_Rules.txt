@@ -1,0 +1,1 @@
+Get-DrsRule -Cluster (Get-Cluster -Name MyCluster) | Sort Name | Select Name, @{N="Enabled";E={$_.Enabled}}, @{N="KeepTogether";E={$_.KeepTogether}}, @{N="Virtual Machines";E={$_.VMIds | % { Get-VM -Id $_ | % {$_.Name} }}} | Export-Csv "c:\drsrules.csv"
