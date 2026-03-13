@@ -1,9 +1,9 @@
-############################################################################################
+###########################################################################################
 ###
 ### Get realtime datastore statistics
 ### Use (Get-Datastore name).ExtensionData.Info.Vmfs.Uuid to get the instance datastore UUID
 ###
-############################################################################################
+###########################################################################################
 
 # Get the vCenter Server Name to connect to
 $vCenterServer = Read-Host "Enter vCenter Server host name (DNS with FQDN or IP address)"
