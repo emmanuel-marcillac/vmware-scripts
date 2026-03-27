@@ -44,8 +44,7 @@ $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentLis
 $vCenterList = @("lbn-vcenter-01.ad.lbn.fr",
 			"lbn-vcenter-02.ad.lbn.fr",
 			"lbn-vcenter-05.ad.lbn.fr",
-			"aka-vcenter-01.ad.lbn.fr",
-			"mobvc01.ad.lbn.fr")
+			"aka-vcenter-01.ad.lbn.fr")
 
 # Connect to each vCenter and process VMs
 ForEach ($vCenter in $vCenterList) {
