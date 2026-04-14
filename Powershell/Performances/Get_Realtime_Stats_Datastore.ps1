@@ -5,6 +5,8 @@
 ###
 ###########################################################################################
 
+# Prompt for vCenter Server details
+
 # Get the vCenter Server Name to connect to
 $vCenterServer = Read-Host "Enter vCenter Server host name (DNS with FQDN or IP address)"
 
@@ -20,15 +22,19 @@ $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentLis
 # Connect to the vCenter Server with collected credentials
 Connect-VIServer -Server $vCenterServer -Credential $Credentials -ErrorAction Ignore | Out-Null 
 
+# Check if connection was successful
 If($? -Eq $True)
 {
 	Write-Host "Connected to your vCenter server $vCenterServer" -ForegroundColor Green
-	
+
+	# Prompt for ESXi host name
 	$esxi = read-host "Enter the name of the ESXi host to get datastore statistics"
 
+	# Prompt for datastore instance UUID
 	$instance = read-host "Enter the instance Datastore to get statistics"
 
-    Get-Stat -Entity $esxi -Stat datastore.numberReadAveraged.average,datastore.numberWriteAveraged.average,datastore.totalReadLatency.average,datastore.totalWriteLatency.average -Realtime -MaxSamples 1 -Instance $instance | Select MetricId, Value, Unit, Instance | Sort-Object MetricId
+    # Retrieve realtime statistics for the specified datastore metrics
+    Get-Stat -Entity $esxi -Stat datastore.numberReadAveraged.average,datastore.numberWriteAveraged.average,datastore.totalReadLatency.average,datastore.totalWriteLatency.average -Realtime -MaxSamples 10 -Instance $instance | Select MetricId, Value, Unit, Instance | Sort-Object MetricId
     
 	# Disconnecting from the vCenter Server
 	Disconnect-VIServer -Confirm:$false
