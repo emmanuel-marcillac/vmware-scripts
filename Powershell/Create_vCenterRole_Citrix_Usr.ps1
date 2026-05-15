@@ -1,16 +1,17 @@
 <#
 .SYNOPSIS
-    Create_vCenterRole_Citrix_Usr.ps1 - PowerShell Script to create a new vCenter Role with all the required permission for Citrix User
+    Create_vCenterRole_Citrix_Usr.ps1 - PowerShell Script to create a new vCenter Role with all the required permission for Citrix XenApp service account.
 .DESCRIPTION
     This script is used to create a new role on your vCenter server.
-    The newly created role will be filled with the needed permissions for using it with Packer
+    The newly created role will be filled with the needed permissions for using it with Citrix XenApp.
 .OUTPUTS
     Results are printed to the console.
 .NOTES
     Author Falko Banaszak, https://virtualhome.blog, Twitter: @Falko_Banaszak
+	Link to the article: https://virtualhome.blog/2024/06/17/create-a-new-vcenter-role-for-citrix-user/
 #>
 
-# Here are all necessary and cumualative vCenter Privileges needed for all operations of Citrix Usr
+# Here are all necessary and cumulative vCenter Privileges needed for all operations of Citrix Usr
 $CitrixUsrPrivileges = @(
 	'Global.CancelTask',
 	'Datastore.Browse',
