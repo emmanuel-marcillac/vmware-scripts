@@ -1,11 +1,3 @@
-###########################################################################
-###
-### Get VM Inventory from multiple vCenters and export result in .csv format
-### Export file is done under $en v:USERPROFILE\documents\Reports
-### You can change variable $outputPath and $OutputFile to meet your needs. 
-###
-###########################################################################
-
 <#
 .SYNOPSIS
     Export VM inventory From multiple vCenter
@@ -71,11 +63,7 @@ ForEach ($vCenter in $vCenterList)
 		}
 	$Report.add($Object) | Out-Null
 	}
-	Write-Host "Exporting to csv file..." -ForegroundColor blue
-	Write-Host "Export file named "$Outputfile".csv is available at "$OutputPath" location" -ForegroundColor blue
-
-	$Report | Sort-Object -Property vCenter,Cluster,Name| Export-Csv  ("$OutputPath"+"$Outputfile.csv") -NoTypeInformation -UseCulture
-
+	
 	Disconnect-VIServer -server $vCenter -Confirm:$false
 	Write-Host "Disconnected from your vCenter Server $vCenter - have a great day :)" -ForegroundColor Green
 
@@ -85,4 +73,10 @@ ForEach ($vCenter in $vCenterList)
 	}
 
 }
+
+Write-Host "Exporting to csv file..." -ForegroundColor blue
+	Write-Host "Export file named "$Outputfile".csv is available at "$OutputPath" location" -ForegroundColor blue
+
+	$Report | Sort-Object -Property vCenter,Cluster,Name| Export-Csv  ("$OutputPath"+"$Outputfile.csv") -NoTypeInformation -UseCulture
+
 
